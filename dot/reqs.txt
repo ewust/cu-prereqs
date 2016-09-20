@@ -1,0 +1,54 @@
+1310 C Programming for ECE (was 1030) none
+1400 Intro to Digital & Analog Electronics APPM 1350 (co-req)
+2250 Intro to Circuits & Electronics APPM 2360 (co-req), PHYS 1120, ECEN 1310 (recommended)
+2260 Circuits as Systems ECEN 2250
+2270 Electronics Design Lab ECEN 1310, ECEN 2260 (co-req)
+2350 Digital Logic ECEN 1310 or CSCI 1300
+2703 Discrete Mathematics ECEN 1310 or CSCI 1300, APPM 1360 Fall
+3250 Microelectronics ECEN 2260
+3300 Linear Systems ECEN 2260
+3350 Programming Digital Systems ECEN 2350
+3360 Digital Design Lab ECEN 3350
+3400 Electromagnetic Fields APPM 2350, APPM 2360, ECEN 2250
+3810 Introduction to Probability APPM 2350 Fall
+4610 Capstone Laboratory 1 ECEN 3360, final Advanced Analog concurrent Fall
+4620 Capstone Laboratory 2 (minimum C- required) ECEN 4610 & 2 (ECE) or 3 (EE) Advanced Analog Electives Spring
+Biomedical and Engineering
+4/5011 Design of Implantable Devices ECEN 2260 Spring even yrs
+4/5021 Engineering Applications in Medicine ECEN 2260 Spring odd yrs
+Communication and Signal Processing
+4242 Communication Theory ECEN 3300, 3810 Fall
+4/5532 DSP Laboratory ECEN 3300, 4632 Spring
+4632 Introduction to Digital Filtering ECEN 3300 Fall
+4652 Communication Laboratory ECEN 3300, 4242 Spring
+Computer Engineering
+2440 Application of Embedded Systems (also 2020) ECEN 1310 or CSCI 1300
+4553 Introduction to Compiler Construction ECEN 2350, 2703 Fall
+4593 Computer Organization ECEN 3360
+4/5613 Embedded Systems Design ECEN 3360 (3250, 4593 recommended)
+4/5623 Real-Time Embedded Systems ECEN 3360 (4613 recommended) Fall
+4/5643 SW Engineering of Concurrent Systems ECEN 4583 or 5543
+4/5653 Real-Time Digital Media ECEN 1310, CSCI 3753 (see catalog for prereqs) Spring
+4/5743 SW Engineering of Distributed Systems ECEN 4583 or 5543, (4/5643 recommended)
+Dynamics and Controls
+4138 Control Systems Analysis ECEN 3300 Fall
+4638 Control Systems Laboratory ECEN 4138 Spring
+Electromagnetics, RF, and Microwaves
+2420 Electronics for Wireless Communication PHYS 1120, APPM 1360, ECEN 2250 pre/coreq Spring
+3410 Electromagnetic Waves & Transmission ECEN 3400 Spring
+4/5224 High Speed Digital Design ECEN 3400 Spring
+4/5324 Microsystem Packaging ECEN 3400, (3410 recommended) Fall
+4/5634 Microwave & RF Lab ECEN 3410 Fall
+Nanostructures and Devices
+3320 Semiconductor Devices ECEN 3250 Fall
+4xx5 Photovoltaic Devices ECEN 3320 Fall
+4/5555 Principles of Electrical Energy Systems ECEN 3810, PHYS 2130 or 2170 (co-req) Fall
+Optics and Photonics
+4116 Intro to Optical Communication ECEN 3400 Fall
+4606 Optics Laboratory ECEN 3400 or PHYS 4510 Fall
+4616 Optoelectronic System Design ECEN 3400 Spring
+2410 Renewable Sources/Efficient Energy Syst PHYS 1120 or ECEN 2250 (co-req) Fall
+3170 Electromagnetic Energy Conversion 1 PHYS 1120, ECEN 3250 (co-req) Fall
+4167 Electromagnetic Energy Conversion 2 ECEN 3170 Spring
+4/5517 Renewable Power Electronics Lab ECEN 4797 Spring
+4/5797 Introduction to Power Electronics ECEN 3250 Fall

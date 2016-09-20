@@ -1,0 +1,12 @@
+ digraph graphname {
+    subgraph cluster0 {
+        "ECEN 2345";
+        "ECEN 2333";
+        label="Co-reqs";
+    }
+
+    "ECEN 1234" -> "ECEN 2345";
+    "ECEN 4444" -> "ECEN 2345";
+    "ECEN 2345" -> "ECEN 5555";
+    "ECEN 2333" -> "ECEN 5555";
+ }

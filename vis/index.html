@@ -1,0 +1,148 @@
+<html>
+
+<head>
+ <script src="vis.js"></script>
+ <link href="vis.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<div id="mynetwork"></div>
+
+<script type="text/javascript">
+
+    var FONT_SIZE = 55; // px
+
+    // Add courses to this array
+    var courses = [
+        {id: 'phys1120', desc: 'Calculus-based Introductory Physics II', prereqs: []},
+        {id: 'ecen1310', desc: 'C Programming for ECE', prereqs: []},
+        {id: 'ecen1400', desc: 'Intro to Digital & Analog Electronics', prereqs: ['appm1350']},
+        {id: 'ecen2250', desc: 'Intro to Circuits & Electronics', prereqs: ['phys1120', 'ecen1310']},
+        {id: 'ecen2260', desc: 'Circuits as Systems', prereqs: ['ecen2250']},
+        {id: 'ecen2270', desc: 'Electronics Design Lab', prereqs: ['ecen1310'], coreqs: ['ecen2260']},
+        {id: 'ecen2350', desc: 'Digital Logic', prereqs: ['ecen1310']}, // or CSCI 1300 ...?
+        {id: 'ecen2703', desc: 'Discrete Mathematics', prereqs: ['ecen1310', 'appm1360']},
+        {id: 'ecen3250', desc: 'Microelectronics', prereqs: ['ecen2260']},
+        {id: 'ecen3300', desc: 'Linear Systems', prereqs: ['ecen2260']},
+        {id: 'ecen3350', desc: 'Programming Digital Systems', prereqs: ['ecen2350']},
+        {id: 'ecen3360', desc: 'Digital Design Lab', prereqs: ['ecen3350']},
+        {id: 'ecen3400', desc: 'Electromagnetic Fields', prereqs: ['appm2350', 'appm2360', 'ecen2250']},
+        {id: 'ecen3810', desc: 'Introduction to PRobability', prereqs: ['appm2350']},
+        {id: 'ecen4610', desc: 'Capstone Laboratory 1', prereqs: ['ecen3360']},
+        {id: 'ecen4620', desc: 'Capstone Laboratory 2', prereqs: ['ecen4610']},
+        //{id: '', desc: '', prereqs: []},
+        //{id: '', desc: '', prereqs: []},
+    ];
+
+    var nodes = [];
+    var edges = [];
+    var courses_dict = {};
+
+    // Populate course_dict with all the courses we know about
+    for (var i=0; i<courses.length; i++) {
+        courses_dict[courses[i].id] = true;
+    }
+
+    function htmlEntities(str) {
+        return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    // Given a course short name ("ECEN 5432") and description ("Graduate Stuff & Things"),
+    // returns a blob URL of a box with <b>short_name</b><br/>description
+    var DOMURL = window.URL || window.webkitURL || window;
+    function box_svg_url(course_short, course_desc) {
+        course_desc = htmlEntities(course_desc);
+        var data = '<svg xmlns="http://www.w3.org/2000/svg" width="600" height="' + (FONT_SIZE*3.9) + '">' +
+                '<rect x="0" y="0" width="100%" height="100%" fill="#bbc7d3" ' +
+                'stroke-width="20" stroke="#ffffff" ></rect>' +
+                '<foreignObject x="15" y="10" width="100%" height="100%">' +
+                '<div xmlns="http://www.w3.org/1999/xhtml" style="font-size:'+FONT_SIZE+'px">' +
+                ' <b>' + course_short + '</b><br/><span style="color: #444">' + course_desc +
+                ' </span>' +
+                '</div>' +
+                '</foreignObject>' +
+                '</svg>';
+        var img = new Image();
+        var svg = new Blob([data], {type: 'image/svg+xml;charset=utf-8'});
+        var url = DOMURL.createObjectURL(svg);
+        return url;
+    }
+
+    // Return the new node for this course
+    function new_course(course_id, course_desc) {
+        var course_caps = course_id.substr(0,4).toUpperCase();
+        var course_num = course_id.substr(4);
+        var course_big = course_caps + ' ' + course_num;
+        var level = parseInt(course_num[0]);
+
+        return {id: course_id, label: '',
+                image: box_svg_url(course_big, course_desc),
+                shape: 'image', physics: false,};
+            // y: level*100, x: Math.floor(Math.random()*1000)};
+    }
+
+
+    for (var i=0; i<courses.length; i++) {
+        var course = courses[i];
+
+        console.log('adding course ' + course.id);
+        nodes.push(new_course(course.id, course.desc));
+
+        for (var j=0; j<course.prereqs.length; j++) {
+            if (courses_dict[course.prereqs[j]] == undefined) {
+                var id = course.prereqs[j];
+                console.log('creating ' + id);
+                // Haven't made this course (yet??)
+                nodes.push(new_course(id, ''));
+                courses_dict[id] = true;
+            }
+            edges.push({from: course.prereqs[j], to: course.id, arrows: 'to'});
+        }
+
+        if (course.coreqs != undefined) {
+            for (var j=0; j<course.coreqs.length; j++) {
+                edges.push({from: course.id, to: course.coreqs[j], dashes:true});
+            }
+        }
+    }
+
+    // create a network
+    var container = document.getElementById('mynetwork');
+    var data = {
+        nodes: nodes,
+        edges: edges
+    };
+    var options = {
+        layout: {
+            hierarchical: {
+                "enabled": true,
+                "levelSeparation": 115,
+                "nodeSpacing": 160,
+                "treeSpacing": 0,
+                "sortMethod": "directed"
+            }
+        },
+        physics:false,
+        configure:function (option, path) {
+            if (path.indexOf('hierarchical') !== -1) {
+                return true;
+            }
+            if (path.indexOf('smooth') !== -1 || option === 'smooth') {
+                return true;
+            }
+            return false;
+        },
+        /*
+        edges: {
+            smooth: {
+                type: 'continuous'
+            }
+        },
+        */
+    };
+    var network = new vis.Network(container, data, options);
+</script>
+
+</body>
+
+</html>
